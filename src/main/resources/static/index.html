@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>勤怠システム</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="sky">
+      <div class="cloud cloud1"></div>
+      <div class="cloud cloud2"></div>
+      <div class="cloud cloud3"></div>
+
+      <div class="star star1">⭐</div>
+      <div class="star star2">⭐</div>
+      <div class="star star3">⭐</div>
+    </div>
+    <h1>勤怠システム</h1>
+
+    <div>
+      <div class="buttons"></div>
+      <button onclick="clockIn()">出勤</button>
+      <button onclick="clockOut()">退勤</button>
+      <button onclick="loadRecords()">履歴更新</button>
+    </div>
+    </div>
+
+    <h2 id="result"></h2>
+
+    <h3 id="status"></h3>
+
+    <div class="card">
+      <h3>今日の勤務時間</h3>
+      <p id="todayWork">0時間0分</p>
+
+      <h3>今月の勤務時間</h3>
+      <p id="monthWork">0時間0分</p>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>出勤</th>
+          <th>退勤</th>
+          <th>勤務時間</th>
+        </tr>
+      </thead>
+
+      <tbody id="records"></tbody>
+    </table>
+
+    <script src="script.js"></script>
+  </body>
+</html>

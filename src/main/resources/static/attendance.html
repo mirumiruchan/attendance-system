@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>勤怠システム</title>
+
+    <style>
+      body {
+        font-family: Arial;
+        margin: 40px;
+      }
+
+      button {
+        padding: 10px 20px;
+        margin: 5px;
+        font-size: 16px;
+      }
+
+      table {
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 8px 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>勤怠システム</h1>
+
+    <button onclick="clockIn()">出勤</button>
+    <button onclick="clockOut()">退勤</button>
+    <button onclick="loadRecords()">履歴更新</button>
+
+    <h2 id="result"></h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>出勤</th>
+          <th>退勤</th>
+          <th>勤務時間</th>
+        </tr>
+      </thead>
+
+      <tbody id="records"></tbody>
+    </table>
+
+    <script>
+      function clockIn() {
+        fetch("/clock-in")
+          .then((r) => r.text())
+          .then((t) => {
+            document.getElementById("result").innerText = t;
+            loadRecords();
+          });
+      }
+
+      function clockOut() {
+        fetch("/clock-out")
+          .then((r) => r.text())
+          .then((t) => {
+            document.getElementById("result").innerText = t;
+            loadRecords();
+          });
+      }
+
+      function loadRecords() {
+        fetch("/records")
+          .then((r) => r.json())
+          .then((data) => {
+            let html = "";
+
+            data.forEach((a) => {
+              let workTime = "";
+
+              if (a.clockIn && a.clockOut) {
+                let start = new Date(a.clockIn);
+                let end = new Date(a.clockOut);
+
+                let diff = (end - start) / 1000 / 60;
+
+                let h = Math.floor(diff / 60);
+                let m = Math.floor(diff % 60);
+
+                workTime = h + "時間" + m + "分";
+              }
+
+              html += `
+        <tr>
+        <td>${a.id}</td>
+        <td>${a.clockIn ?? ""}</td>
+        <td>${a.clockOut ?? ""}</td>
+        <td>${workTime}</td>
+        </tr>
+        `;
+            });
+
+            document.getElementById("records").innerHTML = html;
+          });
+      }
+
+      loadRecords();
+    </script>
+  </body>
+</html>

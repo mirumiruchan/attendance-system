@@ -1,0 +1,235 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #eaf6ff;
+  margin: 40px;
+  text-align: center;
+}
+
+h1 {
+  color: #ff7ac8;
+  margin-bottom: 30px;
+}
+
+/* ボタン */
+
+button {
+  position: relative;
+  padding: 15px 35px;
+  margin: 20px;
+  font-size: 16px;
+  min-width: 120px;
+
+  border: none;
+  border-radius: 40px;
+
+  background: white;
+  color: #ff7ac8;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 15px rgba(0, 0, 0, 0.15),
+    inset 0 -5px 10px rgba(0, 0, 0, 0.05);
+
+  transition: 0.2s;
+}
+
+/* 雲のふくらみ */
+
+button::before,
+button::after {
+  content: "";
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+}
+
+button::before {
+  width: 25px;
+  height: 25px;
+  top: -8px;
+  left: 5px;
+}
+
+button::after {
+  width: 30px;
+  height: 30px;
+  top: -10px;
+  right: 5px;
+}
+
+/* ホバー */
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  background: #6fb6f5;
+  transform: translateY(-2px);
+}
+
+/* カード */
+
+.card {
+  background: white;
+  width: 650px;
+  margin: 30px auto;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* 見出し */
+
+h3 {
+  color: #444;
+}
+
+/* 勤務時間 */
+
+#todayWork,
+#monthWork {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff7ac8;
+}
+
+/* テーブル */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th {
+  background: #8ecbff;
+  color: white;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background: #f5fbff;
+}
+
+/* 勤務中 */
+
+.working {
+  background: #fff0f7;
+}
+
+/* 背景レイヤー */
+
+.sky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* ← これで後ろに行く */
+  overflow: hidden;
+}
+
+.cloud {
+  position: absolute;
+  background: white;
+  width: 120px;
+  height: 60px;
+  border-radius: 50px;
+  opacity: 0.9;
+
+  box-shadow:
+    30px 10px 0 white,
+    60px 0px 0 white,
+    90px 10px 0 white;
+}
+
+/* 雲アニメーション */
+
+@keyframes cloudMove {
+  from {
+    transform: translateX(-200px);
+  }
+  to {
+    transform: translateX(120vw);
+  }
+}
+
+.cloud1 {
+  top: 100px;
+  animation: cloudMove 70s linear infinite;
+}
+
+.cloud2 {
+  top: 250px;
+  animation: cloudMove 90s linear infinite;
+  transform: scale(0.8);
+}
+
+.cloud3 {
+  top: 400px;
+  animation: cloudMove 80s linear infinite;
+  transform: scale(0.6);
+}
+
+.star {
+  position: absolute;
+  font-size: 20px;
+  animation: twinkle 4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+.star1 {
+  top: 150px;
+  left: 20%;
+}
+
+.star2 {
+  top: 320px;
+  left: 70%;
+}
+
+.star3 {
+  top: 500px;
+  left: 40%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: white;
+}
+
+.badge-working {
+  background: #6edb8f;
+}
+
+.badge-off {
+  background: #ff7a7a;
+}
