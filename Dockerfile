@@ -2,8 +2,8 @@ FROM eclipse-temurin:17
 
 WORKDIR /app
 
-COPY target/attendance-system-0.0.1-SNAPSHOT.jar app.jar
+COPY . .
 
-EXPOSE 8080
+RUN ./mvnw clean package -DskipTests
 
-CMD ["java","-jar","app.jar"]
+CMD ["java","-jar","target/attendance-system-0.0.1-SNAPSHOT.jar"]
