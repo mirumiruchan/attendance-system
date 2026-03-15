@@ -1,8 +1,11 @@
-FROM maven:3.9.7-eclipse-temurin-17 AS build
-COPY . .
-RUN mvn clean package -DskipTests
+FROM eclipse-temurin:17
 
-FROM openjdk:17
-COPY --from=build /target/*.jar app.jar
+WORKDIR /app
+
+COPY . .
+
+RUN ./mvnw clean package -DskipTests
+
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/app.jar"]
+
+CMD ["java","-jar","target/*.jar"]
