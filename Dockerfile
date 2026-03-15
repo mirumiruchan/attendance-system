@@ -6,4 +6,4 @@ COPY . .
 
 RUN ./mvnw clean package -DskipTests
 
-CMD ["java","-jar","target/attendance-system-0.0.1-SNAPSHOT.jar"]
+CMD ["java","-jar","target/attendance-0.0.1-SNAPSHOT.jar"]
